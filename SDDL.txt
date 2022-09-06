@@ -1,0 +1,21 @@
+Links:
+    https://plantuml.com
+    ER diagram, structured chart, and Dataflow diagram.
+    Use Case diagram: 
+        System boundary (externals-internals) box
+        actors : primary(left side) and secondary actors(right side)
+        inside box: use case (functional requirements only) (starts with a verb)
+        
+
+
+Things to Do:
+    1. Make tables and modueles in Jira
+    2. design UI
+    3. database design
+    4. front-end coding
+    5. back-end coding
+    6. Link front-end and back-end
+    7. testing and debugging
+    8. hosting and testing
+    9. adding new features
+
