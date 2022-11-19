@@ -4,8 +4,8 @@
         <h1>RISHAB'S APP</h1>
         <h3>OTP Verification</h2>
     </div>
-    <div class="forms" action="{% url 'verify' %}" method="POST">
-        <form >
+    <div class="forms">
+        <form action="{% url 'verify' %}" method="POST">
             {% csrf_token %}
             <input type="tel" class="name1" placeholder="Enter your number" name="phone_number">
             <input type="number" class="name1" placeholder="Enter your OTP" name="otp1">

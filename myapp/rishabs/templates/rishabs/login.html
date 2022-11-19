@@ -8,7 +8,7 @@
         <form action="{% url 'login_view' %}" method="POST">
             {% csrf_token %}
 
-            <input type="text" class="name1" placeholder="Enter your name " name="username">
+            <input type="text" class="name1" placeholder="Enter your number " name="username">
             <input type="password" class="name1" placeholder="Enter your password " name="password">
             
             {% if message %}

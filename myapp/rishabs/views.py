@@ -19,10 +19,9 @@ def login_view(request):
         password = request.POST["password"]
 
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:
-            print(User.objects.get(username=username))
-            if User.objects.get(username=username).is_phone_verified:
+            if User.objects.get(phone_number=username).is_phone_verified:
                 login(request, user)
                 return HttpResponseRedirect(reverse("index"))
         else:
@@ -65,18 +64,22 @@ def logout_view(request):
 
 @api_view(['POST'])
 def verify(request):
-    phone_number = request.POST["phone_number"]
-    otp1 = request.POST["otp1"]
+    if request.method == "POST":
+        phone_number = request.POST["phone_number"]
+        otp1 = request.POST["otp1"]
 
-    try:
-        user_obj = User.objects.get(phone_number = phone_number)
+        try:
+            user_obj = User.objects.get(phone_number = phone_number)
 
-    except Exception as e:
-        return render(request, 'rishabs/verify.html', {'message': 'Phone Number does not Exists'})
+        except Exception as e:
+            return render(request, 'rishabs/verify.html', {'message': 'Phone Number does not Exists'})
     
-    if user_obj.otp == otp1:
-        user_obj.is_phone_verified = True
-        user_obj.save()
-        return render(request, 'rishabs/shop.html')
+        if user_obj.otp == otp1:
+            user_obj.is_phone_verified = True
+            user_obj.save()
+            return render(request, 'rishabs/shop.html')
 
-    return render(request, 'rishabs/verify.html', {'message': 'Phone Number does not Exists'})
+        return render(request, 'rishabs/verify.html', {'message': 'Phone Number does not Exists'})
+
+    else:
+        return render(request, 'rishabs/verify.html')
