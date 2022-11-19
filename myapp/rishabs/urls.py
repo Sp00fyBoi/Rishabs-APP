@@ -1,8 +1,6 @@
 from . import views
 from django.urls import path
 
-app_name = "rishabs"
-
 urlpatterns = [
     path('', views.index, name="index" ),
     path('login', views.login_view, name="login_view" ),

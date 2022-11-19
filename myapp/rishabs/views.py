@@ -11,7 +11,7 @@ from .helpers import send_otp_to_phone
 # Create your views here.
 @login_required(login_url='login_view')
 def index(request):
-    return render(request, 'rishabs/home.html')
+    return render(request, 'rishabs/shop.html')
 
 def login_view(request):
     if request.method == "POST":
@@ -19,17 +19,19 @@ def login_view(request):
         password = request.POST["password"]
 
         user = authenticate(request, username=username, password=password)
-
+        
         if user is not None:
-            login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            print(User.objects.get(username=username))
+            if User.objects.get(username=username).is_phone_verified:
+                login(request, user)
+                return HttpResponseRedirect(reverse("index"))
         else:
             return render(request, 'rishabs/login.html', {'message': 'Invalid Credentials'})
 
     return render(request, 'rishabs/login.html')
 
 
-@api_view(['POST'])
+
 def register_view(request):
 
     if request.method == "POST":
@@ -40,7 +42,7 @@ def register_view(request):
 
         if password == password2 and password!=None:
 
-            user = User.objects.create(
+            user = User.objects.create_user(
                 username = name,
                 password = password,
                 phone_number = phone_number,
