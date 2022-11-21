@@ -1,0 +1,23 @@
+{% extends 'rishabs/layout2.html' %}
+{% block content %}
+<div>
+    <div>
+        <div>
+            <h1>Order Submitted!</h1>
+            <p>You should receive a confirmation email soon.</p>
+            <a href="{% url 'order' %}">Go to the homepage</a>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <h3>Order Summary:</h3>
+            {% for item in items %}
+                <p>{{ item.name }} <span>{{ item.price }}</span></p>
+            {% endfor %}
+
+            <p>Total: {{ price }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
