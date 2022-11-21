@@ -135,5 +135,6 @@ def order(request):
             'snacks': snacks,
         }
 
+
         # render the template
         return render(request, 'rishabs/order.html', context)
