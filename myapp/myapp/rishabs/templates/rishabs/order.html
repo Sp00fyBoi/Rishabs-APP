@@ -1,0 +1,73 @@
+{% extends 'rishabs/layout2.html' %}
+{% block content %}
+ 
+<div>
+
+        <form action="{% url 'order' %}" method="POST">
+            {% csrf_token %}
+            <div class="main-body">
+                <div class="header">
+                    <div class="menu">
+                        <h1>MENU</h1>
+                    </div>
+                    <div class="name">
+                        <h3>NAME</h1>
+                    </div>
+                </div>
+    
+    
+                <div class="options">
+                    <div class="option">
+                        <a class="option_a" href="#juices"><h3>Juices</h3></a>
+                    </div>
+                    <div class="option">
+                        <a class="option_a" href="#hot"><h3>Hot Drinks</h3></a>
+                    </div>
+                    <div class="option">
+                        <a class="option_a" href="#snack"><h3>Snacks</h3></a>
+                    </div>
+                </div>
+    
+                <div class="head">
+                    <div class="head-name" id="juices">Juices</div>
+                    {% for jui in juice %}
+                    <div class="items">
+                        <p>{{jui.name}}</p>
+                        <p>{{jui.price}}</p>
+                        <input type="checkbox" name="items[]" value="{{ jui.pk }}">
+                    </div>
+                    {% endfor %}
+
+
+                    <div class="head-name" id="hot">Hot Drinks</div>
+                    {% for hot in hot_drinks %}
+                    <div class="items">
+                        <p class="item_name">{{hot.name}}</p>
+                        <p>{{hot.price}}</p>
+                        <input type="checkbox" name="items[]" value="{{ hot.pk }}">
+                    </div>
+                    {% endfor %}
+            
+                    <div class="head-name" id="snack">Snacks</div>
+                    {% for snack in snacks %}
+                    <div class="items">
+                        <p>{{snack.name}}</p>
+                        <p>{{snack.price}}</p>
+                        <input type="checkbox" name="items[]" value="{{ snack.pk }}">
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+                    
+    
+
+            <div>
+                <button class="button2" type="submit">PLACE ORDER!</button>
+            </div>
+        </form>
+
+
+    </div>
+
+{% endblock %}
