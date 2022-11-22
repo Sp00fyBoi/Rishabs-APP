@@ -160,3 +160,7 @@ def order(request):
 
         # render the template
         return render(request, 'rishabs/order.html', context)
+
+
+def profile_view(request):
+    return render(request, 'rishabs/profile.html')
