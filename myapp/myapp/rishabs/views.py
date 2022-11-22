@@ -132,7 +132,7 @@ def order(request):
             'price': price
         }
 
-        template = render_to_string('rishabs/email_template.html')
+        template = render_to_string('rishabs/email_template.html',context)
 
         email = EmailMessage(
             'Thanks for purchasing at Rishabs!',

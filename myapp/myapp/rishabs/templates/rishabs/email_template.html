@@ -1,5 +1,10 @@
 Hey {{ user.username }}!
 
 Just wanted to thank you for your recent purchase!
-
-Thankseer :)
+--------------------------------------------------
+{% for item in items %}
+    {{ item.name }} - {{ item.price }}
+{% endfor %}
+    Total: {{ price }}
+--------------------------------------------------
+Please visit us again :)
