@@ -21,6 +21,7 @@ from .helpers import send_otp_to_phone
 def index(request):
     return render(request, 'rishabs/shop.html')
 
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -46,6 +47,7 @@ def register_view(request):
         password = request.POST["password"]
         password2 = request.POST["cpassword"]
         phone_number = request.POST["phone_number"]
+        email = request.POST["email"]
 
         if password == password2 and password!=None:
 
@@ -53,7 +55,8 @@ def register_view(request):
                 username = name,
                 password = password,
                 phone_number = phone_number,
-                otp = send_otp_to_phone(phone_number)
+                otp = send_otp_to_phone(phone_number),
+                email = email
             )
             user.set_password = password
             user.save()
