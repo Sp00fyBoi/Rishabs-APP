@@ -88,7 +88,7 @@ def verify(request):
         if user_obj.otp == otp1:
             user_obj.is_phone_verified = True
             user_obj.save()
-            return render(request, 'rishabs/shop.html')
+            return render(request, 'rishabs/login.html')
 
         return render(request, 'rishabs/verify.html', {'message': 'Phone Number does not Exists'})
 
