@@ -5,6 +5,10 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
+from django.conf import settings
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+
 from .models import MenuItem, Category, OrderModel
 
 from rest_framework.decorators import api_view
@@ -120,6 +124,20 @@ def order(request):
             'price': price
         }
 
+        template = render_to_string('rishabs/email_template.html')
+
+        email = EmailMessage(
+            'Thanks for purchasing at Rishabs!',
+            template,
+            settings.EMAIL_HOST_USER,
+            [request.user.email],
+        )
+
+
+        email.fail_silently=False
+        email.send()
+
+
         return render(request, 'rishabs/order_confirmation.html', context)
 
     else:
@@ -134,7 +152,6 @@ def order(request):
             'hot_drinks': hot_drinks,
             'snacks': snacks,
         }
-
 
         # render the template
         return render(request, 'rishabs/order.html', context)
