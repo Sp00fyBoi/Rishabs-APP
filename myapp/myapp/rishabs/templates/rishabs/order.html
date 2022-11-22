@@ -34,9 +34,15 @@
                     <div class="head-name" id="juices">Juices</div>
                     {% for jui in juice %}
                     <div class="items">
-                        <p>{{jui.name}}</p>
-                        <p>{{jui.price}}</p>
-                        <input type="checkbox" name="items[]" value="{{ jui.pk }}">
+                        <div class="i-name">
+                            <p >{{jui.name}}</p>
+                        </div>
+                        <div class="i-price">
+                            <p >{{jui.price}}</p>
+                        </div>
+                        <div class="i-check">
+                            <input  type="checkbox" name="items[]" value="{{ jui.pk }}">
+                        </div>
                     </div>
                     {% endfor %}
 
@@ -44,18 +50,30 @@
                     <div class="head-name" id="hot">Hot Drinks</div>
                     {% for hot in hot_drinks %}
                     <div class="items">
-                        <p class="item_name">{{hot.name}}</p>
-                        <p>{{hot.price}}</p>
-                        <input type="checkbox" name="items[]" value="{{ hot.pk }}">
+                        <div class="i-name">
+                            <p >{{hot.name}}</p>
+                        </div>
+                        <div class="i-price">
+                            <p >{{hot.price}}</p>
+                        </div>
+                        <div class="i-check">
+                            <input  type="checkbox" name="items[]" value="{{ hot.pk }}">
+                        </div>
                     </div>
                     {% endfor %}
             
                     <div class="head-name" id="snack">Snacks</div>
                     {% for snack in snacks %}
                     <div class="items">
-                        <p>{{snack.name}}</p>
-                        <p>{{snack.price}}</p>
-                        <input type="checkbox" name="items[]" value="{{ snack.pk }}">
+                        <div class="i-name">
+                            <p >{{snack.name}}</p>
+                        </div>
+                        <div class="i-price">
+                            <p >{{snack.price}}</p>
+                        </div>
+                        <div class="i-check">
+                            <input  type="checkbox" name="items[]" value="{{ snack.pk }}">
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
