@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
+from annoying.functions import get_object_or_None
+
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
@@ -98,9 +100,12 @@ def order(request):
         }
 
         items = request.POST.getlist('items[]')
-
+        #print(items)
         for item in items:
-            menu_item = MenuItem.objects.get(pk__contains=int(item))
+            #print(item)
+            menu_item = get_object_or_None(MenuItem, id=int(item))
+            #print(menu_item)
+            #menu_item = MenuItem.objects.get(pk__contains=int(item))
             item_data = {
                 'id': menu_item.pk,
                 'name': menu_item.name,
