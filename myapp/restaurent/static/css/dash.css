@@ -1,0 +1,95 @@
+body{
+    margin: 0px;
+}
+
+.main-body{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(rgb(80, 78, 78),white);
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.navbar1{
+    background-color:#333;
+    align-self:stretch;
+}
+
+.nav-comp{
+    list-style-type: none;
+    justify-content: space-evenly;
+    display: flex;
+    margin: 0;
+    padding: 0; 
+  
+}
+
+li{
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+background-color: #111;
+}
+
+.overview{
+    display: flex;
+    flex-direction: row;
+    background-color: aquamarine;
+}
+
+
+
+.overview_l,.overview_r{
+    width: 50%;
+    background-color: rgba(2, 104, 11, 0.612);
+    margin: 1rem;
+    padding: 2rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+}
+
+.styled-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+

@@ -34,6 +34,7 @@ AUTH_USER_MODEL = 'rishabs.User'
 INSTALLED_APPS = [
     'rishabs',
     'rest_framework',
+    'restaurent',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

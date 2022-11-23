@@ -1,0 +1,47 @@
+{% extends 'rishabs/layout3.html' %}
+{% block content %}
+
+<div class="overview">
+    <div class="overview_l">
+        <p>Todays Revenue</p>
+        <p>{{ total_revenue }}</p>
+    </div>
+    <div  class="overview_r">
+        <p>Todays Orders</p>
+        <p>{{ total_orders}}</p>
+    </div>
+</div>
+
+
+
+<div>
+    <div>
+        <h1>Pending</h1>
+    </div>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Number</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.pk }}</td>
+                <td>{{ order.o_pnum }}</td>
+                <td>{{ order.price }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+{% endblock %}
