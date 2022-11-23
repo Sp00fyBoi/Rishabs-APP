@@ -30,7 +30,7 @@
             {% for order in orders %}
             <tr>
                 <td>{{ order.pk }}</td>
-                <td>{{ order.order_user.phone_number }}</td>
+                <td>{{ order.order_user.username }}</td>
                 <td>{{ order.price }}</td>
             </tr>
         {% endfor %}

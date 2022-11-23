@@ -125,8 +125,7 @@ def order(request):
             item_data = {
                 'id': menu_item.pk,
                 'name': menu_item.name,
-                'price': menu_item.price,
-                'o_phnum': request.user.phone_number    
+                'price': menu_item.price,    
             }
             
 
@@ -139,8 +138,8 @@ def order(request):
             price += item['price']
             item_ids.append(item['id'])
 
-        order = OrderModel.objects.create(price=price)
-        order.order_user.add(request.user)
+        order = OrderModel.objects.create(price=price,order_user=request.user)
+        #order.order_user.add(request.user)
         order.items.add(*item_ids)
 
         context = {
