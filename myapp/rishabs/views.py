@@ -41,6 +41,7 @@ def login_view(request):
                         'total_revenue':total_revenue,
                         'total_orders':len(orders),
                     }
+                    login(request, user)
                     return render(request, 'restaurent/dashboard.html',context)
             elif User.objects.get(phone_number=username).is_phone_verified:
                 login(request, user)

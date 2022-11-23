@@ -3,6 +3,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>Rishabs App</title>
     </head>
     <body>
@@ -20,11 +21,13 @@
                     {% endif %}
                 </ul>
             </navbar>
-            <div class="photo1" >
-                <img src="{% static 'images/icon.png' %}">
+            <div class="new-ui">
+                <div class="photo1" >
+                    <img src="{% static 'images/icon.png' %}">
+                </div>
+                {% block content %}
+                {% endblock %}
             </div>
-            {% block content %}
-            {% endblock %}
         </div>
     </body>
 </html>
