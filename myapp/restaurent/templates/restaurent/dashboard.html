@@ -1,4 +1,4 @@
-{% extends 'rishabs/layout3.html' %}
+{% extends 'restaurent/layout3.html' %}
 {% block content %}
 
 <div class="overview">
@@ -8,7 +8,7 @@
     </div>
     <div  class="overview_r">
         <p>Todays Orders</p>
-        <p>{{ total_orders}}</p>
+        <p>{{ total_orders }}</p>
     </div>
 </div>
 
@@ -22,7 +22,7 @@
         <thead>
             <tr>
                 <th>Order ID</th>
-                <th>Number</th>
+                <th>Name</th>
                 <th>Price</th>
             </tr>
         </thead>
@@ -30,7 +30,7 @@
             {% for order in orders %}
             <tr>
                 <td>{{ order.pk }}</td>
-                <td>{{ order.o_pnum }}</td>
+                <td>{{ order.order_user.phone_number }}</td>
                 <td>{{ order.price }}</td>
             </tr>
         {% endfor %}

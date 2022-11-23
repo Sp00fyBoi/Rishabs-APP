@@ -30,7 +30,19 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            if User.objects.get(phone_number=username).is_phone_verified:
+            if User.objects.get(phone_number=username).is_staff:
+                    orders = OrderModel.objects.all()
+                    total_revenue = 0
+                    for order in orders:
+                        total_revenue += order.price
+
+                    context = {
+                        'orders':orders,
+                        'total_revenue':total_revenue,
+                        'total_orders':len(orders),
+                    }
+                    return render(request, 'restaurent/dashboard.html',context)
+            elif User.objects.get(phone_number=username).is_phone_verified:
                 login(request, user)
                 return HttpResponseRedirect(reverse("index"))
         else:
@@ -112,8 +124,10 @@ def order(request):
             item_data = {
                 'id': menu_item.pk,
                 'name': menu_item.name,
-                'price': menu_item.price
+                'price': menu_item.price,
+                'o_phnum': request.user.phone_number    
             }
+            
 
             order_items['items'].append(item_data)
 
@@ -125,6 +139,7 @@ def order(request):
             item_ids.append(item['id'])
 
         order = OrderModel.objects.create(price=price)
+        order.order_user.add(request.user)
         order.items.add(*item_ids)
 
         context = {
@@ -144,7 +159,7 @@ def order(request):
 
 
         email.fail_silently=False
-        email.send()
+        #email.send()
 
 
         return render(request, 'rishabs/order_confirmation.html', context)
