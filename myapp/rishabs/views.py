@@ -129,7 +129,8 @@ def order(request):
 
         context = {
             'items': order_items['items'],
-            'price': price
+            'price': price,
+            'username' : request.user.username
         }
 
         template = render_to_string('rishabs/email_template.html',context)
