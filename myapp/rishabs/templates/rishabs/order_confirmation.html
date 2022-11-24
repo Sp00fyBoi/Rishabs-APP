@@ -1,6 +1,6 @@
 {% extends 'rishabs/layout2.html' %}
 {% block content %}
-<div>
+<div class="main-body">
     <div>
         <div>
             <h1>Order Submitted!</h1>
@@ -9,14 +9,30 @@
         </div>
     </div>
 
-    <div>
+    <div class="order-contain">
         <div>
-            <h3>Order Summary:</h3>
-            {% for item in items %}
-                <p>{{ item.name }} <span>{{ item.price }}</span></p>
-            {% endfor %}
-
-            <p>Total: {{ price }}</p>
+            <div>
+                <h3>Order Summary:</h3>
+            </div>
+            
+            <table class="styled-table">
+                <thead>
+                    <th>Item</th>
+                    <th>Price</th>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>&#x20b9; {{ item.price }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr id="order-total">
+                        <td>Total</td>
+                        <td>&#x20b9; {{ price }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

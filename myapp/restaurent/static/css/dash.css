@@ -60,12 +60,12 @@ background-color: #111;
     border-radius: 1rem;
 }
 
+
 .styled-table{
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
     width: 100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
@@ -93,3 +93,23 @@ background-color: #111;
     border-bottom: 2px solid #009879;
 }
 
+.order-s:link{
+    text-decoration: none;
+    color: black;
+    transform: rotateX(180deg);
+}
+.order-s:visited {
+    text-decoration: none;
+    color: black;
+    transform: rotateY(180deg);
+  }
+
+.order-details{
+    margin-top: 2rem;
+    width:60%;
+    align-self: center;
+    text-align: center;
+    background-color:#c4c4c4;
+    border-radius: 1rem;
+    box-shadow: 10px 10px 5px #c4c4c4;
+}

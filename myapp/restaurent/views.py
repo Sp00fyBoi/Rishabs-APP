@@ -20,3 +20,17 @@ def dashboard_view(request):
         'total_orders':len(orders),
     }
     return render(request, 'restaurent/dashboard.html',context)
+
+#@login_required(login_url='login_view')
+def order_details(request,pk):
+    if request.method == "POST":
+        return render(request, 'restaurent/dashboard.html',context)
+
+
+    else:
+        order = OrderModel.objects.get(pk=pk)
+        context = {
+            'order':order
+        }
+        print(order)
+        return render(request, 'restaurent/order_details.html',context)

@@ -38,7 +38,7 @@
                             <p >{{jui.name}}</p>
                         </div>
                         <div class="i-price">
-                            <p >{{jui.price}}</p>
+                            <p >&#x20b9; {{jui.price}}</p>
                         </div>
                         <div class="i-check">
                             <input  type="checkbox" name="items[]" value="{{ jui.pk }}">
@@ -54,7 +54,7 @@
                             <p >{{hot.name}}</p>
                         </div>
                         <div class="i-price">
-                            <p >{{hot.price}}</p>
+                            <p >&#x20b9; {{hot.price}}</p>
                         </div>
                         <div class="i-check">
                             <input  type="checkbox" name="items[]" value="{{ hot.pk }}">
@@ -69,7 +69,7 @@
                             <p >{{snack.name}}</p>
                         </div>
                         <div class="i-price">
-                            <p >{{snack.price}}</p>
+                            <p >&#x20b9; {{snack.price}}</p>
                         </div>
                         <div class="i-check">
                             <input  type="checkbox" name="items[]" value="{{ snack.pk }}">
@@ -77,17 +77,10 @@
                     </div>
                     {% endfor %}
                 </div>
-
-
-                    
-    
-
             <div>
                 <button class="button2" type="submit">PLACE ORDER!</button>
             </div>
         </form>
-
-
     </div>
 
 {% endblock %}

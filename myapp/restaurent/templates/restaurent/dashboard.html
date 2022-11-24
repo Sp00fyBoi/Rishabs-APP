@@ -4,7 +4,7 @@
 <div class="overview">
     <div class="overview_l">
         <p>Todays Revenue</p>
-        <p>{{ total_revenue }}</p>
+        <p>&#x20b9; {{ total_revenue }}</p>
     </div>
     <div  class="overview_r">
         <p>Todays Orders</p>
@@ -13,7 +13,7 @@
 </div>
 
 
-
+ 
 <div>
     <div>
         <h1>Pending</h1>
@@ -24,6 +24,9 @@
                 <th>Order ID</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Paid?</th>
+                <th>Delivered?</th>
+                <th>Order Details</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +34,23 @@
             <tr>
                 <td>{{ order.pk }}</td>
                 <td>{{ order.order_user.username }}</td>
-                <td>{{ order.price }}</td>
+                <td>&#x20b9; {{ order.price }}</td>
+                {% if order.is_paid %} 
+                    <td><h3>&#x2705;</h3></td>
+                {% else %}
+                    <td><h3>&#10060;</h3></td>
+                {% endif %}
+
+                {% if order.is_delivered %} 
+                    <td><h3>&#x2705;</h3></td>
+                {% else %}
+                    <td><h3>&#10060;</h3></td>
+                {% endif %}
+
+                <td class>
+                    <h2><a class="order-s" href="{% url 'order_details' order.pk %}">&#9998;</a></h2>
+                </td>
+
             </tr>
         {% endfor %}
 

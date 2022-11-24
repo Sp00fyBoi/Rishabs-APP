@@ -38,5 +38,7 @@ class OrderModel(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2)
     items = models.ManyToManyField('MenuItem', related_name='order', blank=True)
     order_user = models.ForeignKey(User, related_name='userinfo',on_delete=models.CASCADE)
+    is_paid = models.BooleanField(default=False)
+    is_delivered = models.BooleanField(default=False)
     def __str__(self):
         return f'Order: {self.created_on.strftime("%b %d %I: %M %p")}'
