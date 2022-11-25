@@ -8,7 +8,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-image: linear-gradient(rgb(80, 78, 78),white);
+    background-image: linear-gradient(rgb(80, 78, 78),rgb(255, 255, 255));
     padding-bottom: 20px;
     text-align: center;
 }
@@ -111,5 +111,30 @@ background-color: #111;
     text-align: center;
     background-color:#c4c4c4;
     border-radius: 1rem;
-    box-shadow: 10px 10px 5px #c4c4c4;
+    box-shadow: 8px 8px 5px #717171;
+}
+
+.orderid-name{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.orderid-name > div >h3{
+    margin:0px;
+}
+
+.order-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.order-footer-l,.order-footer-r{
+    padding: 1rem;
+    
+}
+
+.order-footer-r{
+    justify-content: center;
 }

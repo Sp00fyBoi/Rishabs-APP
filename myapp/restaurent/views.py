@@ -24,11 +24,19 @@ def dashboard_view(request):
 #@login_required(login_url='login_view')
 def order_details(request,pk):
     if request.method == "POST":
-        return render(request, 'restaurent/dashboard.html',context)
+        order = OrderModel.objects.get(pk=pk)
+        order.is_delivered = True
+        order.save()
+
+        context = {
+            'order':order
+        }
+        return render(request, 'restaurent/order_details.html',context)
 
 
     else:
         order = OrderModel.objects.get(pk=pk)
+        
         context = {
             'order':order
         }
