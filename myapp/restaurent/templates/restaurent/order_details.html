@@ -34,26 +34,41 @@
     </div>
 
     <div class="order-footer">
-        <div class="order-footer-l">
-            {% if order.is_paid %}
+        {% if order.is_paid %}
+            <div class="order-footer-l">
                 <h3>&#x2705; Order has been Paid</h3>
-            {% else %}
-                <h3>&#10060; Order has not been Paid</h3>
-            {% endif %}
-        </div>
+            </div>
 
-        <div class="order-footer-r">
-            {% if order.is_delivered %}
-                <h3>&#x2705; Order has been Delivered</h3>
-            {% else %}
+            <div class="order-footer-r">
+                {% if order.is_delivered %}
+                    <h3>&#x2705; Order has been Delivered</h3>
+                {% else %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="nice" name="del"><h3>Mark as Delivered</h3></button>
+                    </form>
+                {% endif %}
+            </div>
+
+        {% else %}
+            <div class="order-footer-l"></div>
                 <form method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="nice"><h3>Mark as Delivered</h3></button>
+                    <button type="submit" class="nice" name="pay"><h3>Mark as Paid</h3></button>
+                    
                 </form>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
+
     </div>    
 
 </div>
+
+<script>
+    function autoRefresh() {
+        window.location = window.location.href;
+    }
+    setInterval('autoRefresh()', 5000);
+</script>
 
 {% endblock %}

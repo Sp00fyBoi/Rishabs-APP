@@ -25,8 +25,13 @@ def dashboard_view(request):
 def order_details(request,pk):
     if request.method == "POST":
         order = OrderModel.objects.get(pk=pk)
-        order.is_delivered = True
-        order.save()
+        
+        if "del" in request.POST:
+            order.is_delivered = True
+            order.save()
+        elif "pay" in request.POST:
+            order.is_paid = True
+            order.save()
 
         context = {
             'order':order
