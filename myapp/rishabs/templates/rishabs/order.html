@@ -1,11 +1,12 @@
 {% extends 'rishabs/layout2.html' %}
 {% block content %}
- 
-<div>
 
+ 
+    <div>
         <form action="{% url 'order' %}" method="POST">
             {% csrf_token %}
             <div class="main-body">
+                
                 <div class="header">
                     <div class="menu">
                         <h1>Menu</h1>
@@ -14,29 +15,43 @@
                     <div class="name">
                         <h3>{{ user.username }}</h1>
                     </div>
-                    
                 </div>
-    
-    
-                <div class="options">
-                    <a class="option_a" href="#juices">
-                        <div class="option">
-                            <p>Juices</p>
-                        </div>
-                    </a>
 
-                    <a class="option_a" href="#hot">
-                        <div class="option">
-                            <p>Hot Drinks</p>
-                        </div>
-                    </a>
-                    
-                    <a class="option_a" href="#snack">
-                        <div class="option">
-                            <p>Snacks</p>
-                        </div>
-                    </a>
-                    
+                {% if message %}
+                <div>
+                    <h3>{{ message }}</h1>
+                </div>
+                {% else %}
+                {% endif %}
+
+                {% if fed %}
+                    <div>
+                        <h3>{{ fed }}</h1>
+                    </div>
+                {% else %}
+                {% endif %}
+        
+                <div class="design-bg">    
+                    <div class="options">
+                        <a class="option_a" href="#juices">
+                            <div class="option">
+                                <p>Juices</p>
+                            </div>
+                        </a>
+    
+                        <a class="option_a" href="#hot">
+                            <div class="option">
+                                <p>Hot Drinks</p>
+                            </div>
+                        </a>
+                        
+                        <a class="option_a" href="#snack">
+                            <div class="option">
+                                <p>Snacks</p>
+                            </div>
+                        </a>
+                        
+                    </div>
                 </div>
     
                 <div class="head">

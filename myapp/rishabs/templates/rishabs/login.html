@@ -6,12 +6,16 @@
     <div class="forms">
         <form action="{% url 'login_view' %}" method="POST">
             {% csrf_token %}
+            <div>
+                <input type="text" class="name1" placeholder="Enter your number " name="username">
+                <input type="password" class="name1" placeholder="Enter your password " name="password">
+            </div>
 
-            <input type="text" class="name1" placeholder="Enter your number " name="username">
-            <input type="password" class="name1" placeholder="Enter your password " name="password">
             
             {% if message %}
+            <div>
                 <p class="error">{{ message }}</p>
+            </div>
             {% endif %}
 
             <div>
@@ -20,9 +24,7 @@
 
             <div class="acc">
                 <p>Don't have an account?<a href="{% url 'register_view' %}"> Register here</a></p>
-                
             </div>
-
         </form>
     </div>
 {% endblock %}

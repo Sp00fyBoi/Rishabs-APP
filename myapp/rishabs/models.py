@@ -40,5 +40,6 @@ class OrderModel(models.Model):
     order_user = models.ForeignKey(User, related_name='userinfo',on_delete=models.CASCADE)
     is_paid = models.BooleanField(default=False)
     is_delivered = models.BooleanField(default=False)
+    feedback = models.CharField(max_length=100,default="")
     def __str__(self):
         return f'Order: {self.created_on.strftime("%b %d %I: %M %p")}'

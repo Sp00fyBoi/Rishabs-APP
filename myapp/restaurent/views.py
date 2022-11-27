@@ -32,6 +32,19 @@ def order_details(request,pk):
         elif "pay" in request.POST:
             order.is_paid = True
             order.save()
+        elif "can" in request.POST:
+            order.delete()
+            orders = OrderModel.objects.all()
+            total_revenue = 0
+            for order in orders:
+                total_revenue += order.price
+
+            context = {
+                'orders':orders,
+                'total_revenue':total_revenue,
+                'total_orders':len(orders),
+            }
+            return render(request, 'restaurent/dashboard.html',context)
 
         context = {
             'order':order
@@ -40,10 +53,19 @@ def order_details(request,pk):
 
 
     else:
-        order = OrderModel.objects.get(pk=pk)
+        check = OrderModel.objects.filter(pk=pk)
+        if len(check)>0:
+            order = OrderModel.objects.get(pk=pk)
+        else:
+            return dashboard_view(request)
         
+        str = ""
+        
+        for i in range(2,len(order.feedback)-2):
+            str+=order.feedback[i]
+
         context = {
-            'order':order
+            'order':order,
+            'feedback': str
         }
-        print(order)
         return render(request, 'restaurent/order_details.html',context)

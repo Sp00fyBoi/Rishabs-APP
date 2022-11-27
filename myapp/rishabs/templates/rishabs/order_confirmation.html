@@ -1,13 +1,13 @@
 {% extends 'rishabs/layout2.html' %}
 {% block content %}
-<div class="main-body">
+
+
     <div>
-        <div>
-            <h1>Order Submitted!</h1>
-            <p>You should receive the invoice email soon.</p>
-            <a href="{% url 'order' %}">Return to menu</a>
-        </div>
+        <br>
+        <h1>Order Submitted!</h1>
+        <p>You should receive the invoice email soon.</p>
     </div>
+
 
     <div class="order-contain">
         <div>
@@ -28,12 +28,12 @@
                     </tr>
                     {% endfor %}
                     <tr id="order-total">
-                        <td>Total</td>
-                        <td>&#x20b9; {{ price }}</td>
+                        <th>Total</th>
+                        <th>&#x20b9; {{ price }}</th>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+
 {% endblock %}

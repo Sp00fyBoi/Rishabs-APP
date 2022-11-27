@@ -1,8 +1,22 @@
-{% extends 'restaurent/layout3.html' %}
+{% extends 'rishabs/layout2.html' %}
 {% block content %}
-<div class="order-details">
 
+{% if order.is_delivered %}
+    <div>
+        <br>
+        <p>Thankyou!</p>
+        <p>You should receive the invoice email soon.</p>
+    </div>
+
+{% else %}
+{% endif %}
+
+<div class="order-details">
+    <div>
+        <h3>Order Summary</h3>
+    </div>
     <div class="orderid-name">
+
         <div>
             <h3>Order ID: {{order.id}}</h3>
         </div>
@@ -42,41 +56,37 @@
                 {% if order.is_delivered %}
                     <h3>&#x2705; Order has been Delivered</h3>
                 {% else %}
-                    <form method="POST">
-                        {% csrf_token %}
-                        <button type="submit" class="nice" name="del"><h3>Mark as Delivered</h3></button>
-                    </form>
+                    <h3>&#10060; Order is being Prepared</h3>
                 {% endif %}
             </div>
 
         {% else %}
             <div class="order-footer-l"></div>
-                <form method="POST">
-                    {% csrf_token %}
-
-                    <button type="submit" class="nice" name="can"><h3>Cancel Order</h3></button>
-
-                    <button type="submit" class="nice" name="pay"><h3>Mark as Paid</h3></button>
-                    
-                </form>
+                <div class="loader">Waiting for Payment</div>
             </div>
         {% endif %}
 
     </div>    
-
-    <script>
-        function autoRefresh() {
-            window.location = window.location.href;
-        }
-        setInterval('autoRefresh()', 5000);
-    </script>
-
-    {% if feedback %}
-        <div><h3>FEEDBACK:</h3></div>
-        <div><h3>{{ feedback }}</h3></div>
-    {% else %}
-    {% endif %}
 </div>
 
+{% if order.is_delivered %}
+    <div>
+        <form action="{% url 'feedback' %}" method="GET">
+            <div  class="feedback">
+                <button class="button3" type="submit">FeedBack</button>
+            </div>
+        </form>
+    </div>
+
+{% else %}
+{% endif %}
+
+
+<script>
+    function autoRefresh() {
+        window.location = window.location.href;
+    }
+    setInterval('autoRefresh()', 5000);
+</script>
 
 {% endblock %}

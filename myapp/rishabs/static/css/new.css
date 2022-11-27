@@ -13,7 +13,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-image: #e4f1f1;
+    background-color: #e4f1f1;
     padding-bottom: 20px;
     text-align: center;
 }
@@ -37,6 +37,13 @@ body{
     margin: 0;
     padding: 0; 
   
+}
+
+.design-bg{
+    background-image: url('../images/bg-pattern1.png');
+    background-size: cover;
+    background-repeat: none;
+    padding-block: 1.5rem;
 }
 
 li{
@@ -164,7 +171,6 @@ li a:hover {
     border-radius: 5px;
     background-color: #112031;
     color: white;
-    border: 1px solid #dcdcdc;
     margin-top: -10px;
 }
 
@@ -189,10 +195,13 @@ li a:hover {
 }
 
 .order-contain{
-    background-color: rgba(21, 78, 37, 0.19);
+    background-image: linear-gradient(to left top, #d4ecdd, #b3d0c4, #93b4ac, #759995, #587e7f, #496e72, #3a5e64, #2c4f57, #26464e, #203e46, #1b353d, #152d35);
     margin-top: 3rem;
-    width: 60%;
+    width: 80%;
     align-self: center;
+    color: white;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 10px #152D35;
 }
 
 .styled-table{
@@ -205,9 +214,10 @@ li a:hover {
 }
 
 .styled-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
+    background-color: #152D35;
+    color: white;
     text-align: center;
+    border-top: 2px solid #e4f1f1;
 }
 
 .styled-table th,
@@ -215,20 +225,40 @@ li a:hover {
     padding: 12px 15px;
 }
 
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
 
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+.styled-table tbody tr {
+    background-color: #e4f1f1;
+    color: black;
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #e4f1f1;
 }
 
 #order-total{
-    background-color: #009879;
-    color: #ffffff;
+    background-color: #152D35;
+    color: white;
     text-align: center;
+}
+
+.loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;  
+}
+
+.loader::after{
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #345B63;
+    border-top-color: #152D35;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading{
+    from { transform: rotate(0turn);}
+    to { transform: rotate(1turn);}
 }

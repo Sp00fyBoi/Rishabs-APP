@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 from annoying.functions import get_object_or_None
+
+from django.http import HttpResponse
 
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -142,29 +144,18 @@ def order(request):
         #order.order_user.add(request.user)
         order.items.add(*item_ids)
 
+        # context = {
+        #     'items': order_items['items'],
+        #     'price': price,
+        #     'username' : request.user.username
+        # }
         context = {
-            'items': order_items['items'],
-            'price': price,
-            'username' : request.user.username
+            'order':order
         }
+        
+        return render(request, 'rishabs/customer_order_details.html', context)
 
-        template = render_to_string('rishabs/email_template.html',context)
-
-        email = EmailMessage(
-            'Thanks for purchasing at Rishabs!',
-            template,
-            settings.EMAIL_HOST_USER,
-            [request.user.email],
-        )
-
-
-        email.fail_silently=False
-        #email.send()
-
-
-        return render(request, 'rishabs/order_confirmation.html', context)
-
-    else:
+    if request.method == "GET":
 
         juice = MenuItem.objects.filter(category__name__contains='juice')
         hot_drinks = MenuItem.objects.filter(category__name__contains='hot_drinks')
@@ -183,3 +174,80 @@ def order(request):
 
 def profile_view(request):
     return render(request, 'rishabs/profile.html')
+
+def rorder_details(request,pk):
+    if request.method == "POST":
+        order = OrderModel.objects.get(pk=pk)
+        order.delete()
+
+        juice = MenuItem.objects.filter(category__name__contains='juice')
+        hot_drinks = MenuItem.objects.filter(category__name__contains='hot_drinks')
+        snacks = MenuItem.objects.filter(category__name__contains='snacks')
+
+        # pass into context
+        context = {
+            'juice': juice,
+            'hot_drinks': hot_drinks,
+            'snacks': snacks,
+            'message':'Order has been cancelled!'
+        }
+
+        # render the template
+        return render(request, 'rishabs/order.html', context)
+
+    else:
+        check = OrderModel.objects.filter(pk=pk)
+        
+        if len(check)>0:
+            order = OrderModel.objects.get(pk=pk)
+        else:
+            juice = MenuItem.objects.filter(category__name__contains='juice')
+            hot_drinks = MenuItem.objects.filter(category__name__contains='hot_drinks')
+            snacks = MenuItem.objects.filter(category__name__contains='snacks')
+
+            # pass into context
+            context = {
+                'juice': juice,
+                'hot_drinks': hot_drinks,
+                'snacks': snacks,
+                'message' : 'Order has been cancelled!',
+            }
+
+            # render the template
+            return render(request, 'rishabs/order.html', context)
+
+        context = {
+            'order':order
+        }
+        return render(request, 'rishabs/rorder_details.html',context)
+
+
+def feedback(request):
+    if request.method == "POST":
+
+        feedback_text = request.POST.getlist('comment[]')
+        orders = OrderModel.objects.all()
+        #feedback_text = request.GET('comment')
+        #order = OrderModel.objects.filter(order_user=request.user)
+        order = OrderModel.objects.filter(order_user=request.user)
+        order1 = order[len(order)-1]
+        order1.feedback = feedback_text
+        order1.save()
+
+
+        juice = MenuItem.objects.filter(category__name__contains='juice')
+        hot_drinks = MenuItem.objects.filter(category__name__contains='hot_drinks')
+        snacks = MenuItem.objects.filter(category__name__contains='snacks')
+
+        # pass into context
+        context = {
+            'juice': juice,
+            'hot_drinks': hot_drinks,
+            'snacks': snacks,
+            'fed':'Thanks for the Feedback',
+        }
+
+        # render the template
+        return render(request, 'rishabs/order.html', context)
+    else:
+        return render(request, 'rishabs/feedback.html')
