@@ -118,42 +118,56 @@ def order(request):
         }
 
         items = request.POST.getlist('items[]')
-        #print(items)
-        for item in items:
-            #print(item)
-            menu_item = get_object_or_None(MenuItem, id=int(item))
-            #print(menu_item)
-            #menu_item = MenuItem.objects.get(pk__contains=int(item))
-            item_data = {
-                'id': menu_item.pk,
-                'name': menu_item.name,
-                'price': menu_item.price,    
-            }
-            
+        if items == []:
+            juice = MenuItem.objects.filter(category__name__contains='juice')
+            hot_drinks = MenuItem.objects.filter(category__name__contains='hot_drinks')
+            snacks = MenuItem.objects.filter(category__name__contains='snacks')
 
-            order_items['items'].append(item_data)
+            # pass into context
+            context = {
+                'juice': juice,
+                'hot_drinks': hot_drinks,
+                'snacks': snacks,
+                'error': "Please select atleast one item!",
+            }
+
+            # render the template
+            return render(request, 'rishabs/order.html', context)
+        else:
+            for item in items:
+                #print(item)
+                menu_item = get_object_or_None(MenuItem, id=int(item))
+                #print(menu_item)
+                #menu_item = MenuItem.objects.get(pk__contains=int(item))
+                item_data = {
+                    'id': menu_item.pk,
+                    'name': menu_item.name,
+                    'price': menu_item.price,    
+                }
+
+                order_items['items'].append(item_data)
 
             price = 0
             item_ids = []
 
-        for item in order_items['items']:
-            price += item['price']
-            item_ids.append(item['id'])
+            for item in order_items['items']:
+                price += item['price']
+                item_ids.append(item['id'])
 
-        order = OrderModel.objects.create(price=price,order_user=request.user)
-        #order.order_user.add(request.user)
-        order.items.add(*item_ids)
+            order = OrderModel.objects.create(price=price,order_user=request.user)
+            #order.order_user.add(request.user)
+            order.items.add(*item_ids)
 
-        # context = {
-        #     'items': order_items['items'],
-        #     'price': price,
-        #     'username' : request.user.username
-        # }
-        context = {
-            'order':order
-        }
-        
-        return render(request, 'rishabs/customer_order_details.html', context)
+            # context = {
+            #     'items': order_items['items'],
+            #     'price': price,
+            #     'username' : request.user.username
+            # }
+            context = {
+                'order':order
+            }
+            
+            return render(request, 'rishabs/customer_order_details.html', context)
 
     if request.method == "GET":
 

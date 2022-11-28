@@ -24,6 +24,12 @@
                 {% else %}
                 {% endif %}
 
+                {% if error %}
+                <div class="error-div">
+                    <p class="div-error">{{ error }}</p>
+                </div>
+                {% endif %}
+
                 {% if fed %}
                     <div>
                         <h3>{{ fed }}</h1>

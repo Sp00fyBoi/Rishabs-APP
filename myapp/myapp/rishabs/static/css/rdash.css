@@ -163,3 +163,12 @@ textarea:focus {
     border: 3px solid #112031;
     transition: 0.3s;
 }
+
+
+.error-div{
+    background-color: rgb(220, 106, 106);
+}
+
+.div-error{
+    font-size: 2rem;
+}
