@@ -22,13 +22,14 @@ A seamless web application built with HTML, CSS, JavaScript, and Django framewor
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-repo-url.git`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Set up the database and run migrations: 
+1. Clone the repository: `git clone https://github.com/Sp00fyBoi/Rishabs-APP.git`
+2. Move to Rishabs-App-local `cd Rishabs-App-local`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Set up the database and run migrations: 
     - `python manage.py makemigrations`
     - `python manage.py migrate`
-4. Start the development server: `python manage.py runserver`
-5. Access the application at `http://localhost:8000`
+5. Start the development server: `python manage.py runserver`
+6. Access the application at `http://localhost:8000`
 
 ## Usage
 
